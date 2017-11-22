@@ -3,7 +3,7 @@
 
 startcblock
 
-    int _fltused;
+    //int _fltused;
 
 #if defined(FUNDAMENTAL_COMPILER_MSVC) && defined(FUNDAMENTAL_32_BIT) // use this file only for 32-bit architecture
 

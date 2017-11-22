@@ -4,13 +4,13 @@
 
 #ifdef FUNDAMENTAL_SYSTEM_WINDOWS
 //HWND ConsoleWindow;
-HANDLE ConsoleOutput;
+//HANDLE ConsoleOutput;
 #endif
 
 nomangle void fundamental_console_init()
 {
 	//ConsoleWindow = GetConsoleWindow();
-	ConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	//ConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
 nomangle void puts_no_newline(cstr str)
@@ -21,7 +21,7 @@ nomangle void puts_no_newline(cstr str)
 nomangle void write_console(void* data, usize length)
 {
 	u32 writtenChars;
-	WriteConsoleA(ConsoleOutput, data, (u32)length, &writtenChars, nullptr);
+	WriteConsoleA(GetStdHandle(STD_OUTPUT_HANDLE), data, (u32)length, &writtenChars, nullptr);
 }
 
 nomangle void puts(cstr str)

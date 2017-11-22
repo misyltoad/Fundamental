@@ -8,16 +8,14 @@ nomangle i32 FundamentalMain(cstr argsString, usize argCount, cstr* argsArray)
 
 	if (argCount != 2)
 	{
-		puts_no_newline("Arguments: <file>");
+		puts_no_newline("No such file.");
 		return 1;
 	}
 
 	u8* fileData = loadfile(argsArray[1], &fileSize);
 	if (!fileData)
 	{
-		puts_no_newline("No such file: ");
-		puts_no_newline(argsArray[1]);
-		puts_no_newline(".");
+		puts_no_newline("No such file.");
 		return 1;
 	}
 

@@ -6,18 +6,11 @@
 
 startcblock
 
-	inline usize strlen(cstr str);
+#if 1
+	usize strlen(cstr str);
 	#pragma intrinsic(strlen)
-
-#if 0
-	inline usize strlen(cstr str)
-	{
-		cstr terminator = str;
-		while (*str != '\0')
-			terminator++;
-
-		return terminator - str;
-	}
+#else
+	usize strlen(cstr str);
 #endif
 
 endcblock

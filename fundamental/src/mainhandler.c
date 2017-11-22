@@ -7,15 +7,15 @@
 
 nomangle extern i32 FundamentalMain(cstr argsString, usize argCount, cstr* argsArray);
 
-void fundamental_init()
+#ifdef FUNDAMENTAL_SYSTEM_WINDOWS
+
+inline void fundamental_init()
 {
 	fundamental_memory_init();
 	fundamental_console_init();
 }
 
-#ifdef FUNDAMENTAL_SYSTEM_WINDOWS
-
-int FundamentalBootstrapWindows()
+inline int FundamentalBootstrapWindows()
 {
 	fundamental_init();
 
@@ -54,8 +54,17 @@ int FundamentalBootstrapWindows()
 		}
 	}
 
-	return FundamentalMain(argvStr, argCount, argsArray);
+	int retVal = FundamentalMain(argvStr, argCount, argsArray);
+	
+	for (usize i = 0; i < argCount; i++)
+		free_heap(argvStr[i]);
+
+	free_heap(argsArray);
+
+	return retVal;
 }
+
+#endif
 
 nomangle int __stdcall mainCRTStartup()
 {
@@ -67,9 +76,12 @@ nomangle int __stdcall WinMainCRTStartup()
 	return FundamentalBootstrapWindows();
 }
 
-#endif
+nomangle int __stdcall FundamentalEntryPoint()
+{
+	return FundamentalBootstrapWindows();
+}
 
-nomangle int main()
+nomangle int __stdcall main()
 {
 	return FundamentalBootstrapWindows();
 }
