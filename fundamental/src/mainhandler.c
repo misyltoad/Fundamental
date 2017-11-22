@@ -54,14 +54,7 @@ inline int FundamentalBootstrapWindows()
 		}
 	}
 
-	int retVal = FundamentalMain(argvStr, argCount, argsArray);
-	
-	for (usize i = 0; i < argCount; i++)
-		free_heap(argvStr[i]);
-
-	free_heap(argsArray);
-
-	return retVal;
+	return FundamentalMain(argvStr, argCount, argsArray);
 }
 
 #endif

@@ -20,7 +20,7 @@ nomangle i32 FundamentalMain(cstr argsString, usize argCount, cstr* argsArray)
 	}
 
 	write_console(fileData, fileSize);
-	free_heap(fileData);
+	//free_heap(fileData); // Let Windows do dis when we end the process.
 
 	return 1;
 }

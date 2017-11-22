@@ -98,6 +98,8 @@ typedef struct _OVERLAPPED {
 #define STD_INPUT_HANDLE (DWORD)-10
 #define _Reserved_
 
+HANDLE WINAPI GetProcessHeap(void);
+
 BOOL WINAPI WriteConsoleA(
 	_In_             HANDLE  hConsoleOutput,
 	_In_       const VOID    *lpBuffer,
