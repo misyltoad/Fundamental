@@ -15,7 +15,7 @@ nomangle void fundamental_memory_init()
 #endif
 }
 
-nomangle usize memsize(void* ptr)
+nomangle usize get_memory_size(void* ptr)
 {
 	MemoryHeader* memory = (MemoryHeader*)(ptr);
 	memory--;
@@ -23,7 +23,7 @@ nomangle usize memsize(void* ptr)
 	return memory->size;
 }
 
-nomangle void* heapalloc(usize allocSize)
+nomangle void* alloc_heap(usize allocSize)
 {
 	MemoryHeader header;
 	header.size = allocSize;
@@ -43,7 +43,7 @@ nomangle void* heapalloc(usize allocSize)
 	return (void*)(data);
 }
 
-void heapfree(void* ptr)
+void free_heap(void* ptr)
 {
 	MemoryHeader* memory = (MemoryHeader*)(ptr);
 	memory--;
@@ -53,19 +53,16 @@ void heapfree(void* ptr)
 #endif
 }
 
-#pragma function(memset)
-nomangle void *memset(void *dest, int c, size_t count)
+nomangle void set_memory(void *dest, int c, size_t count)
 {
 	char *bytes = (char *)dest;
 	while (count--)
 	{
 		*bytes++ = (char)c;
 	}
-	return dest;
 }
 
-#pragma function(memcpy)
-nomangle void *memcpy(void *dest, const void *src, size_t count)
+nomangle void copy_memory(void *dest, const void *src, size_t count)
 {
 	char *dest8 = (char *)dest;
 	const char *src8 = (const char *)src;
@@ -73,5 +70,4 @@ nomangle void *memcpy(void *dest, const void *src, size_t count)
 	{
 		*dest8++ = *src8++;
 	}
-	return dest;
 }

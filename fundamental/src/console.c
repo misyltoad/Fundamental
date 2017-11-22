@@ -21,7 +21,7 @@ nomangle void puts_no_newline(cstr str)
 nomangle void write_console(void* data, usize length)
 {
 	u32 writtenChars;
-	WriteConsoleA(ConsoleOutput, data, length, &writtenChars, nullptr);
+	WriteConsoleA(ConsoleOutput, data, (u32)length, &writtenChars, nullptr);
 }
 
 nomangle void puts(cstr str)

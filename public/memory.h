@@ -6,28 +6,15 @@
 
 startcblock
 
-	#ifdef FUNDAMENTAL_COMPILER_MSVC
-	void* __cdecl _alloca(usize allocSize);
-	#define alloca _alloca
-	#else
-	
-	#endif
+	void set_memory(void* dst, int value, usize size);
 
-	#define stackalloc alloca
+	void copy_memory(void* dst, const void* src, usize size);
 
-	void* memset(void* dst, int value, usize size);
-	#pragma intrinsic(memset)
+	usize get_memory_size(void* ptr);
 
-	void* memcpy(void* dst, const void* src, usize size);
-	#pragma intrinsic(memcpy)
+	void* alloc_heap(usize allocSize);
 
-	usize memsize(void* ptr);
-
-	void* heapalloc(usize allocSize);
-#define malloc heapalloc
-
-	void heapfree(void* ptr);
-#define free heapfree
+	void free_heap(void* ptr);
 
 endcblock
 

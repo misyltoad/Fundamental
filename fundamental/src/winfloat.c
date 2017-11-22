@@ -1,8 +1,8 @@
 #include "compilerinfo.h"
 #include "definitions.h"
 
-extern "C"
-{
+startcblock
+
     int _fltused;
 
 #if defined(FUNDAMENTAL_COMPILER_MSVC) && defined(FUNDAMENTAL_32_BIT) // use this file only for 32-bit architecture
@@ -95,4 +95,4 @@ extern "C"
 
 #endif
 
-}
+endcblock

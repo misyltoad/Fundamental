@@ -22,13 +22,13 @@ nomangle u8* loadfile(cstr path, usize* fileSize)
 #else
 	*fileSize = size.QuadPart;
 	i64 amountLeftToRead = size.QuadPart;
-	void* data = malloc((usize)amountLeftToRead);
+	void* data = alloc_heap((usize)amountLeftToRead);
 
 	u32 amountRead;
 
 	while (amountLeftToRead > 0)
 	{
-		u32 amountToRead = amountLeftToRead > (u32)(-1) ? (u32)(-1) : amountLeftToRead;
+		u32 amountToRead = amountLeftToRead > (u32)(-1) ? (u32)(-1) : (u32)amountLeftToRead;
 		ReadFile(file, data, amountToRead, &amountRead, nullptr);
 		amountLeftToRead -= amountToRead;
 	}

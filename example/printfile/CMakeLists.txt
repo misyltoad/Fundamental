@@ -1,4 +1,4 @@
-add_executable( printfile main.cpp )
+add_executable( printfile main.c )
 target_include_directories( printfile PRIVATE ../../public )
 
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${FUNDAMENTAL_COMPILE_FLAGS_RELEASE}")

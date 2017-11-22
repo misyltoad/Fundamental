@@ -10,6 +10,8 @@ extern "C"
 #define FUNDAMENTAL_DEBUG
 #endif
 
+#define NULL 0
+
 #ifdef __cplusplus
 #define nomangle extern "C"
 #define startcblock extern "C" \
@@ -17,6 +19,7 @@ extern "C"
 #define endcblock }
 
 #else
+#define nullptr NULL
 #define nomangle
 #define startcblock
 #define endcblock
