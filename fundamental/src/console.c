@@ -30,3 +30,20 @@ nomangle void puts(cstr str)
 	write_console((void*)"\n", 1);
 	//puts_no_newline("\n");
 }
+
+nomangle void wide_write_console(void* data, usize length)
+{
+	u32 writtenChars;
+	WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), data, (u32)length, &writtenChars, nullptr);
+}
+
+nomangle void wide_puts(wstr str)
+{
+	wide_puts_no_newline(str);
+	wide_write_console((void*)L"\n", 1);
+}
+
+nomangle void wide_puts_no_newline(wstr str)
+{
+	write_console((void*)str, wcslen(str));
+}

@@ -8,6 +8,7 @@
 startcblock
 
 u8* loadfile(cstr path, usize* size);
+u8* wide_loadfile(wstr path, usize* size);
 
 endcblock
 

@@ -13,11 +13,12 @@ startcblock
 #define WINAPI __stdcall
 #define VOID void
 #define LPSTR char*
+#define LPWSTR wchar_t*
 #define SIZE_T usize
 #define DWORD u32
 #define _Ret_maybenull_
 #define LPVOID void*
-#define LPCTSTR char*
+#define LPCWSTR wchar_t*
 #define _In_opt_
 #define _In_ 
 #define _Out_ 
@@ -100,6 +101,11 @@ typedef struct _OVERLAPPED {
 
 HANDLE WINAPI GetProcessHeap(void);
 
+LPWSTR* CommandLineToArgvW(
+	_In_  LPCWSTR lpCmdLine,
+	_Out_ int     *pNumArgs
+);
+
 BOOL WINAPI WriteConsoleA(
 	_In_             HANDLE  hConsoleOutput,
 	_In_       const VOID    *lpBuffer,
@@ -108,7 +114,16 @@ BOOL WINAPI WriteConsoleA(
 	_Reserved_       LPVOID  lpReserved
 );
 
+BOOL WINAPI WriteConsoleW(
+	_In_             HANDLE  hConsoleOutput,
+	_In_       const VOID    *lpBuffer,
+	_In_             DWORD   nNumberOfCharsToWrite,
+	_Out_            LPDWORD lpNumberOfCharsWritten,
+	_Reserved_       LPVOID  lpReserved
+);
+
 WINBASEAPI LPSTR WINAPI GetCommandLineA(VOID);
+WINBASEAPI LPWSTR WINAPI GetCommandLineW(VOID);
 WINBASEAPI _Ret_maybenull_ HANDLE WINAPI HeapCreate( _In_ DWORD flOptions, _In_ SIZE_T dwInitialSize, _In_ SIZE_T dwMaximumSize );
 BOOL WINAPI HeapFree(
 	_In_ HANDLE hHeap,
@@ -120,7 +135,17 @@ HANDLE WINAPI GetStdHandle(
 );
 WINBASEAPI _Ret_maybenull_ _Post_writable_byte_size_(dwBytes) DECLSPEC_ALLOCATOR LPVOID WINAPI HeapAlloc( _In_ HANDLE hHeap, _In_ DWORD dwFlags, _In_ SIZE_T dwBytes );
 HANDLE WINAPI CreateFileA(
-	_In_     LPCTSTR               lpFileName,
+	_In_     LPSTR				   lpFileName,
+	_In_     DWORD                 dwDesiredAccess,
+	_In_     DWORD                 dwShareMode,
+	_In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+	_In_     DWORD                 dwCreationDisposition,
+	_In_     DWORD                 dwFlagsAndAttributes,
+	_In_opt_ HANDLE                hTemplateFile
+);
+
+HANDLE WINAPI CreateFileA(
+	_In_     LPWSTR				   lpFileName,
 	_In_     DWORD                 dwDesiredAccess,
 	_In_     DWORD                 dwShareMode,
 	_In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes,

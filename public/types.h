@@ -36,6 +36,8 @@ startcblock
 #endif
 
 	typedef const char* cstr;
+	typedef unsigned short wchar_t;
+	typedef const wchar_t* wstr;
 
 endcblock
 

@@ -11,6 +11,11 @@ void write_console(void* data, usize length);
 void puts(cstr str);
 void puts_no_newline(cstr str);
 
+void wide_write_console(void* data, usize length);
+void wide_puts(wstr str);
+void wide_puts_no_newline(wstr str);
+
+
 endcblock
 
 #endif

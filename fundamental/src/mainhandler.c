@@ -5,19 +5,20 @@
 #include "console_private.h"
 #include "windows_stripped.h"
 
-nomangle extern i32 FundamentalMain(cstr argsString, usize argCount, cstr* argsArray);
+nomangle extern i32 FundamentalMain(wstr argsString, int argCount, wstr* argsArray);
 
 #ifdef FUNDAMENTAL_SYSTEM_WINDOWS
 
-inline void fundamental_init()
-{
-	fundamental_memory_init();
-	fundamental_console_init();
-}
+//inline void fundamental_init()
+//{
+	//fundamental_memory_init();
+	//fundamental_console_init();
+//}
 
+#if 0
 inline int FundamentalBootstrapWindows()
 {
-	fundamental_init();
+	//fundamental_init();
 
 	#define argsalloc alloc_heap
 
@@ -56,6 +57,15 @@ inline int FundamentalBootstrapWindows()
 
 	return FundamentalMain(argvStr, argCount, argsArray);
 }
+#else
+inline int FundamentalBootstrapWindows()
+{
+	wstr cmdLine = GetCommandLineW();
+	int argCount;
+	wstr* cmdArgs = CommandLineToArgvW(cmdLine, &argCount);
+	return FundamentalMain(cmdLine, argCount, cmdArgs);
+}
+#endif
 
 #endif
 

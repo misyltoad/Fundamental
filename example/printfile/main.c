@@ -2,7 +2,7 @@
 #include "file.h"
 #include "console.h"
 
-nomangle i32 FundamentalMain(cstr argsString, usize argCount, cstr* argsArray)
+nomangle i32 FundamentalMain(wstr argsString, int argCount, wstr* argsArray)
 {
 	usize fileSize;
 
@@ -12,7 +12,7 @@ nomangle i32 FundamentalMain(cstr argsString, usize argCount, cstr* argsArray)
 		return 1;
 	}
 
-	u8* fileData = loadfile(argsArray[1], &fileSize);
+	u8* fileData = wide_loadfile(argsArray[1], &fileSize);
 	if (!fileData)
 	{
 		puts_no_newline("No such file.");

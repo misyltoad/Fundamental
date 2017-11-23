@@ -6,7 +6,7 @@
 
 startcblock
 
-void fundamental_console_init();
+//void fundamental_console_init();
 
 endcblock
 

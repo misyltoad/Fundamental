@@ -11,7 +11,7 @@ typedef struct
 	usize size;
 } MemoryHeader;
 
-void fundamental_memory_init();
+//void fundamental_memory_init();
 
 endcblock
 

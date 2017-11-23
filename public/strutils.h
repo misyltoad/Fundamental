@@ -9,6 +9,9 @@ startcblock
 #if 1
 	usize strlen(cstr str);
 	#pragma intrinsic(strlen)
+
+	usize wcslen(wstr str);
+	#pragma intrinsic(wcslen)
 #else
 	usize strlen(cstr str);
 #endif
