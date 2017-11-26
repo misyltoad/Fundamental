@@ -4,8 +4,13 @@
 #include "memory_private.h"
 #include "console_private.h"
 #include "windows_stripped.h"
+#include "fundamental_config.h"
 
+#ifdef FUNDAMENTAL_SIMPLE_ENTRY
+nomangle extern i32 FundamentalMain();
+#else
 nomangle extern i32 FundamentalMain(wstr argsString, int argCount, wstr* argsArray);
+#endif
 
 #ifdef FUNDAMENTAL_SYSTEM_WINDOWS
 
@@ -60,10 +65,14 @@ inline int FundamentalBootstrapWindows()
 #else
 inline int FundamentalBootstrapWindows()
 {
+#ifdef FUNDAMENTAL_SYSTEM_WINDOWS
 	wstr cmdLine = GetCommandLineW();
 	int argCount;
 	wstr* cmdArgs = CommandLineToArgvW(cmdLine, &argCount);
 	return FundamentalMain(cmdLine, argCount, cmdArgs);
+#else
+	return FundamentalMain();
+#endif
 }
 #endif
 

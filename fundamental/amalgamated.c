@@ -1,0 +1,8 @@
+#include "src/console.c"
+#include "src/file.c"
+#include "src/mainhandler.c"
+#include "src/memory.c"
+#include "src/strutils.c"
+#include "src/winfloat.c"
+#include "src/winmath.c"
+#include "src/random.c"

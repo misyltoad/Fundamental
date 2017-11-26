@@ -6,8 +6,7 @@
 #define CRT_LOWORD(x) dword ptr [x+0]
 #define CRT_HIWORD(x) dword ptr [x+4]
 
-extern "C"
-{
+startcblock
     __declspec(naked) void _alldiv()
     {
         #define DVND    esp + 16      // stack address of dividend (a)
@@ -942,7 +941,8 @@ RETZERO:
         ret
         }
     }
-}
+
+endcblock
 
 #undef CRT_LOWORD
 #undef CRT_HIWORD

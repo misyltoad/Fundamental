@@ -1,8 +1,5 @@
-FILE(GLOB_RECURSE fundamental_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-    "src/**.c"
-	"include/**.h"
-	"../public/**.h"
-)
+add_executable( starfield main.c fundamental_config.h ../../fundamental/amalgamated.c )
+target_include_directories( starfield PRIVATE ../../public . )
 
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${FUNDAMENTAL_COMPILE_FLAGS_RELEASE}")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${FUNDAMENTAL_COMPILE_FLAGS_RELEASE}")
@@ -27,6 +24,4 @@ string(REPLACE "/RTC1" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
 string(REPLACE "/RTC1" "" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
 string(REPLACE "/RTC1" "" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
 
-add_library( fundamental ${fundamental_SRC} )
-
-target_include_directories( fundamental PRIVATE ../public include )
+# target_link_libraries( starfield fundamental )

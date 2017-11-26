@@ -1,5 +1,5 @@
-add_executable( printfile main.c )
-target_include_directories( printfile PRIVATE ../../public )
+add_executable( printfile main.c fundamental_config.h ../../fundamental/amalgamated.c )
+target_include_directories( printfile PRIVATE ../../public . )
 
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${FUNDAMENTAL_COMPILE_FLAGS_RELEASE}")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${FUNDAMENTAL_COMPILE_FLAGS_RELEASE}")
@@ -24,4 +24,4 @@ string(REPLACE "/RTC1" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
 string(REPLACE "/RTC1" "" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
 string(REPLACE "/RTC1" "" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
 
-target_link_libraries( printfile fundamental )
+#target_link_libraries( printfile fundamental )

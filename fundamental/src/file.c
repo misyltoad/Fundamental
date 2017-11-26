@@ -13,6 +13,7 @@ nomangle u8* loadfile(cstr path, usize* fileSize)
 		return nullptr;
 	}
 
+	u32 amountRead;
 	LARGE_INTEGER size;
 	GetFileSizeEx(file, &size);
 #ifdef FUNDAMENTAL_32_BIT
@@ -23,8 +24,6 @@ nomangle u8* loadfile(cstr path, usize* fileSize)
 	*fileSize = size.QuadPart;
 	i64 amountLeftToRead = size.QuadPart;
 	void* data = alloc_heap((usize)amountLeftToRead);
-
-	u32 amountRead;
 
 	while (amountLeftToRead > 0)
 	{
@@ -43,7 +42,7 @@ nomangle u8* loadfile(cstr path, usize* fileSize)
 nomangle u8* wide_loadfile(wstr path, usize* fileSize)
 {
 #ifdef FUNDAMENTAL_SYSTEM_WINDOWS
-	HANDLE file = CreateFileW((char*)path, GENERIC_READ, 0, 0, OPEN_EXISTING, 128, 0);
+	HANDLE file = CreateFileW(path, GENERIC_READ, 0, 0, OPEN_EXISTING, 128, 0);
 	if (file == INVALID_HANDLE_VALUE)
 	{
 #ifdef FUNDAMENTAL_DEBUG
@@ -51,6 +50,8 @@ nomangle u8* wide_loadfile(wstr path, usize* fileSize)
 #endif
 		return nullptr;
 	}
+
+	u32 amountRead;
 
 	LARGE_INTEGER size;
 	GetFileSizeEx(file, &size);
@@ -62,8 +63,6 @@ nomangle u8* wide_loadfile(wstr path, usize* fileSize)
 	*fileSize = size.QuadPart;
 	i64 amountLeftToRead = size.QuadPart;
 	void* data = alloc_heap((usize)amountLeftToRead);
-
-	u32 amountRead;
 
 	while (amountLeftToRead > 0)
 	{

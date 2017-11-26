@@ -16,5 +16,5 @@ ELSE()
 	set(FUNDAMENTAL_LINKER_FLAGS_RELEASE "")
 ENDIF()
 
-add_subdirectory( fundamental )
 add_subdirectory( example/printfile )
+add_subdirectory( example/starfield )

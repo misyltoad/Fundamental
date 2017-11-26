@@ -23,7 +23,7 @@ nomangle usize get_memory_size(void* ptr)
 	return memory->size;
 }
 
-nomangle void* alloc_heap(usize allocSize)
+nomangle void* malloc(usize allocSize)
 {
 	MemoryHeader header;
 	header.size = allocSize;
@@ -44,7 +44,7 @@ nomangle void* alloc_heap(usize allocSize)
 	return (void*)(data);
 }
 
-void free_heap(void* ptr)
+nomangle void free(void* ptr)
 {
 	MemoryHeader* memory = (MemoryHeader*)(ptr);
 	memory--;
@@ -54,12 +54,14 @@ void free_heap(void* ptr)
 #endif
 }
 
+#ifndef FUNDAMENTAL_SYSTEM_WINDOWS
 nomangle void set_memory(void *dest, int c, usize count)
 {
 	char *bytes = (char *)dest;
 	while (count--)
 		*bytes++ = (char)c;
 }
+#endif
 
 nomangle void copy_memory(void *dest, const void *src, usize count)
 {

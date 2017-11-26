@@ -29,7 +29,7 @@ startcblock
 	typedef u64 usize;
 	typedef i64 isize;
 	typedef f64 fsize;
-#elif FUNDAMENTAL_32_BIT
+#else // FUNDAMENTAL_32_BIT
 	typedef u32 usize;
 	typedef i32 isize;
 	typedef f32 fsize;
